@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Orders</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Product</th>
+      <th>Product Count</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+   <% @orders.each do |order| %>
+   <tr>
+      <td><%= link_to "#{order.product_name}", order %></td>
+      <td><%= order.product_count %></td>
+   </tr>
+   
+   <% end %>
+
+</table>
+
+<%= link_to "go back to Customers", customers_path %>
