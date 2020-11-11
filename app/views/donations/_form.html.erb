@@ -1,0 +1,18 @@
+<%= form_tag("/donations/#{@donation.id}", method: 'patch', remote: true ) do %>
+
+  <div class="field">
+    <%= label_tag :quantity %>
+    <%= number_field_tag :quantity %>
+  </div>
+
+ <div class="field">
+    <%= label_tag :donor %>
+    <%= select_tag :donor, options_from_collection_for_select(Donor.order(:last_name),:id,:full_name) %>
+    
+  </div>
+
+  <div class="actions">
+    <%= submit_tag ('Donate') %>
+  </div>
+<% end %>
+

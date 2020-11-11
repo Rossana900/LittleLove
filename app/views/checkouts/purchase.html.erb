@@ -1,0 +1,42 @@
+<h1> Items for donation from <%= @donor.full_name %> </h1>
+
+<h1>Donations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Item</th>
+      <th>Amount Donated</th>
+      <th>Price</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+   <% @donations.each do |donation| %>
+   <tr>
+      <td><%= link_to "#{donation.product_name}", donation %></td>
+      <td><%= donation.product_count %></td>
+      <td><%= donation.price %>  </td>
+      
+   </tr>
+   
+   <% end %>
+
+</table>
+
+<%= form_tag("/purchase/#{@donor.id}", method: 'post', local: true ) do %>
+
+  <div class="field">
+    <%= label_tag :credit_card_number %>
+    <%= text_field_tag :credit_card_number %>
+  </div>
+
+  <div class="actions">
+    <%= submit_tag ('Donate') %>
+  </div>
+<% end %>
+
+     <%= link_to 'Back', donations_path %> 
+
+
+

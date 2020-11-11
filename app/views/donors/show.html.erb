@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @donor.first_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @donor.last_name %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @donor.phone %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @donor.email %>
+</p>
+
+<h1>Donations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Product</th>
+      <th>Product Count</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+   <% @donor.donations.each do |order| %>
+   <tr>
+      <td><%= link_to "#{donation.product_name}", donation %></td>
+      <td><%= donation.product_count %></td>
+      <td><%= link_to 'Show', donation %> | </td> 
+      <td><%= link_to 'Edit', edit_donation_path(donation) %> | </td> 
+      <td><%= link_to 'Destroy', donation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      
+   </tr>
+   
+   <% end %>
+
+</table>
+
+<%= link_to 'Edit', edit_donor_path(@donor) %> |
+<%= link_to 'Back', donors_path %>
+

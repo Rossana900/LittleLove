@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<h1 style="text-align:center;">Donations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:center;">Item</th>
+      <th style="text-align:center;">Amount Donated</th>
+      <th style="text-align:center;">Price</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+   <% @donations.each do |donation| %>
+   <tr>
+      <td style="text-align:center;"><%= link_to "#{donation.product_name}", donation %></td>
+      <td style="text-align:center;"><%= donation.product_count %></td>
+      <td style="text-align:center;"><%= donation.price %>  </td>
+      <td style="text-align:center;"> | <td style="text-align:center;"><%= link_to 'Donate', edit_donation_path(donation)%>  </td> 
+   </tr>
+   
+   <% end %>
+
+</table>
+
+<p></p>
+<p></p>
+
+<%= link_to "Checkout", checkout_path %> 

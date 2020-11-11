@@ -1,0 +1,13 @@
+<%= form_tag("/purchase/", method: 'patch', local: true ) do %>
+
+  <div class="field">
+    <%= label_tag :donor %>
+    <%= select_tag :donor, options_from_collection_for_select(Donor.order(:last_name),:id,:full_name) %>
+    
+  </div>
+
+  <div class="actions">
+    <%= submit_tag ('Donate') %>
+  </div>
+<% end %>
+

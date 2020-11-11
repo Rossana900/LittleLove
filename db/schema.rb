@@ -10,24 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201013024400) do
+ActiveRecord::Schema.define(version: 20201110013044) do
 
-  create_table "customers", force: :cascade do |t|
+  create_table "donations", force: :cascade do |t|
+    t.string   "product_name"
+    t.integer  "product_count"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.string   "price"
+  end
+
+  create_table "donations_donors", id: false, force: :cascade do |t|
+    t.integer "donation_id", null: false
+    t.integer "donor_id",    null: false
+    t.boolean "purchased"
+    t.index ["donor_id", "donation_id"], name: "index_donations_donors_on_donor_id_and_donation_id"
+  end
+
+  create_table "donors", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
     t.string   "phone"
     t.string   "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "orders", force: :cascade do |t|
-    t.string   "product_name"
-    t.integer  "product_count"
-    t.integer  "customer_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.index ["customer_id"], name: "index_orders_on_customer_id"
   end
 
 end
