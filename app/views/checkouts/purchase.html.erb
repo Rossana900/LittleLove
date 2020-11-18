@@ -1,4 +1,45 @@
-<h1> Items for donation from <%= @donor.full_name %> </h1>
+<style>
+
+h1 {color:maroon;
+text-align:center;
+margin-top: 5px;
+font-size:250%;}
+
+th {color:maroon;
+text-align:center;
+font-size:100%;}
+
+td {color:maroon;
+text-align:center;
+font-size:100%;}
+
+p {color:maroon;
+font-size:150%;}
+
+img {margin-right: 120px;
+margin-top: 90px;
+}
+
+h5 {color:black;
+margin-right: 150px;
+margin-top: 10px;
+}
+
+div {action="/action_page.php"}
+
+
+</style>
+
+<h5 style="text-align:right;"> <u>
+<%= link_to 'Home', new_donor_path(@donor) %> | <%= link_to 'Back', checkout_path(@donor) %> </u>
+<hr>
+<h5 style="text-align:right;"> <u>
+<%= link_to 'Continue with the donations', donations_path(@donor) %> </u></h5>
+
+<img src= "https://www.abc.net.au/news/image/11191718-3x2-700x467.png" alt="Venezuelan family" style="float:right;width:520px">
+
+<h1> Items from <br> 
+<u><%= @donor.full_name %> </u>
 
 <h1>Donations</h1>
 
@@ -6,37 +47,50 @@
   <thead>
     <tr>
       <th>Item</th>
-      <th>Amount Donated</th>
+      <th>Q</th>
       <th>Price</th>
-      <th colspan="2"></th>
+      <th>Total</th>
+      <th colspan="4"></th>
     </tr>
   </thead>
-
-   <% @donations.each do |donation| %>
-   <tr>
-      <td><%= link_to "#{donation.product_name}", donation %></td>
-      <td><%= donation.product_count %></td>
-      <td><%= donation.price %>  </td>
+    <% total=0 %>
+    <% @donations_donors.each do |donation_donor| %>
+    <%donation=donation_donor.donation%>
       
+   <tr>
+      <td><%= donation.product_name %></td>
+      <td><%= donation_donor.count %></td>
+      <td><%= donation.price %>  </td>
+      <% total+= donation.price[1..-1].to_i*donation_donor.count%>
+      <td>$<%= donation.price[1..-1].to_i*donation_donor.count %>  </td>
    </tr>
-   
+
    <% end %>
 
 </table>
+<hr>
+<p>Grand Total $<%= total %></p>
+<hr>
 
 <%= form_tag("/purchase/#{@donor.id}", method: 'post', local: true ) do %>
 
-  <div class="field">
-    <%= label_tag :credit_card_number %>
-    <%= text_field_tag :credit_card_number %>
+  <div>
+    <%= label_tag('cc-number', 'Credit Card Number:') %>
+    <%= number_field_tag('cc-number', nil, min: 9999999, autocomplete: 'off', required: true) %>
+  </div>
+
+  <div>
+    <%= label_tag('cc-exp-month', 'Expiration Date:') %>
+    <%= select_month(Date.new(Date.today.year, 1).beginning_of_month, {use_two_digit_numbers: true}, {id: 'cc-exp-month'}) %>
+    <%= select_year(Date.today, {start_year: Date.today.year, end_year: Date.today.year+10}, {id: 'cc-exp-year'}) %>
+  </div>
+
+  <div>
+    <%= label_tag('cc-cvc', 'CVC:') %>
+    <%= number_field_tag('cc-cvc', nil, min: 99, autocomplete: 'off', required: true) %>
   </div>
 
   <div class="actions">
     <%= submit_tag ('Donate') %>
   </div>
-<% end %>
-
-     <%= link_to 'Back', donations_path %> 
-
-
-
+<% end %>    

@@ -1,13 +1,31 @@
 <%= form_tag("/purchase/", method: 'patch', local: true ) do %>
 
+<style>
+p {color:maroon;
+text-align:center;
+font-size:150%;}
+
+h1 {color:maroon;
+text-align:center;
+font-size:220%;}
+</style>
+
   <div class="field">
-    <%= label_tag :donor %>
-    <%= select_tag :donor, options_from_collection_for_select(Donor.order(:last_name),:id,:full_name) %>
-    
+    <h1><%= label_tag :donor %></h1>
+    <p><%= select_tag :donor, options_from_collection_for_select(Donor.order(:last_name),:id,:full_name) %></p>
   </div>
 
   <div class="actions">
-    <%= submit_tag ('Donate') %>
+    <p style="text-align:center;"> <%= submit_tag ('Donate') %></p>
   </div>
 <% end %>
+
+<p style="text-align:right;"> <u>
+<%= link_to 'Home', new_donor_path(@donor) %> 
+</u></p>
+
+<hr>
+<img src= "https://static.seattletimes.com/wp-content/uploads/2017/12/ab39097a-e42e-11e7-a4e1-89f87111a34a-780x521.jpg" alt="Venezuelan child at the hospital" style="float:center;width:600px">
+<img src= "https://www.aljazeera.com/mritems/Images/2016/10/7/c2948448e14342f9ac4475ad020d0e32_8.jpg" alt="Venezuelan child looking for food" style="float:right;width:600px">
+<hr>
 

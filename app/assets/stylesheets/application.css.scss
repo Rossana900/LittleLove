@@ -20,8 +20,8 @@
 @import "bootstrap";
 // @import "font-awesome";
 
-$white: rgba(128, 63, 63, 0.788);
-$black: rgb(206, 193, 174);
+$white: rgba(63, 62, 62, 0.788);
+$black: rgb(236, 212, 170);
 
 .navbar {
   margin-bottom: 0;
@@ -44,7 +44,7 @@ a:visited {
   color: $white;
 }
 .jumbotron {
-  background: #0f0f0f;
+  background: #e7e5e5;
   color: $white;
   text-align: center;
   p {

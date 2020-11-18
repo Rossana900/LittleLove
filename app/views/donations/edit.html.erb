@@ -1,8 +1,28 @@
+
+<style>
+
+h1 {color:maroon;
+text-align:center;
+font-size:270%;}
+
+h2 {color:maroon;
+text-align:center;
+font-size:270%;}
+
+p {color:blue;
+text-align:center;
+font-size:170%;}
+</style>
+
+
 <h1> <%= @donation.product_name %> </h1>
 <h2> <%= @donation.price %> </h2>
 
 
 <%= render 'form', donation: @donation %>
 
-<%= link_to 'Show', @donation %> |
+<p>
+
+<%# <%= link_to 'Show', @donation %> 
 <%= link_to 'Back', donations_path %>
+</p>

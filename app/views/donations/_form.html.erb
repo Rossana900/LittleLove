@@ -1,5 +1,17 @@
 <%= form_tag("/donations/#{@donation.id}", method: 'patch', remote: true ) do %>
 
+<style>
+
+h3 {color:maroon;
+font-size:150%;
+text-align:center}
+h4 {color:maroon;
+font-size:150%;
+text-align:center}
+
+</style>
+
+<h3>
   <div class="field">
     <%= label_tag :quantity %>
     <%= number_field_tag :quantity %>
@@ -11,8 +23,12 @@
     
   </div>
 
+  </h3>
+
+<h4>
   <div class="actions">
     <%= submit_tag ('Donate') %>
   </div>
+  </h4>
 <% end %>
 

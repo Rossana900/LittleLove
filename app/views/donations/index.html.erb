@@ -1,30 +1,65 @@
 <p id="notice"><%= notice %></p>
 
-<h1 style="text-align:center;">Donations</h1>
+<style>
+
+h1 {color:maroon;
+font-size:270%;
+text-align:center}
+
+th {color:maroon;
+ font-size:150%;
+ text-align:left}
+
+td {color:black;
+ font-size:100%;
+text-align:center}
+
+p {color:maroon;
+ font-size:170%;}
+
+h6 {color:maroon;
+ font-size:120%;}
+
+</style>
+
+<h1> Donations</h1>
+
+<p style="text-align:right;"> <u>
+<%= link_to 'Home', new_donor_path(@donor) %> </u></p>
+
+<hr>
 
 <table>
   <thead>
     <tr>
       <th style="text-align:center;">Item</th>
-      <th style="text-align:center;">Amount Donated</th>
       <th style="text-align:center;">Price</th>
       <th colspan="2"></th>
     </tr>
   </thead>
 
    <% @donations.each do |donation| %>
+
    <tr>
-      <td style="text-align:center;"><%= link_to "#{donation.product_name}", donation %></td>
-      <td style="text-align:center;"><%= donation.product_count %></td>
+      <td style="text-align:center;"><%= donation.product_name %></td>
       <td style="text-align:center;"><%= donation.price %>  </td>
-      <td style="text-align:center;"> | <td style="text-align:center;"><%= link_to 'Donate', edit_donation_path(donation)%>  </td> 
+      <td style="text-align:center;"> | <td style="text-align:center;"><u><%= link_to 'Donate', edit_donation_path(donation)%></u>  </td> 
    </tr>
    
    <% end %>
-
 </table>
 
-<p></p>
-<p></p>
+<hr>
 
+<p><u>
 <%= link_to "Checkout", checkout_path %> 
+</u></p>
+
+<hr>
+
+<h6> Every Tuesday a box with the donations is sent to Venezuela. Friday is the last day to send donations for the following Tuesday but<br>
+you can make donations everyday.<br>
+A Little Love organization will receive the boxes every week and will distribute the donations. You will help feed a little venezuelan child.</h6>
+
+
+
